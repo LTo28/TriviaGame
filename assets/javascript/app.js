@@ -27,14 +27,18 @@ const trivia = () => {
     .then(r => r.json())
     .then(response => {
       console.log(response)
-      response.results.forEach(triviaObject => {
-        let { question, correct_answer } = triviaObject
-        console.log(question, correct_answer)
+      response.results.forEach((triviaObject) => {
+        let { question, correct_answer, incorrect_answers } = triviaObject
+        console.log(question, correct_answer, incorrect_answers)
         document.querySelector(".trivia").innerHTML = question
-        incorrect_answers.forEach(incorrectAnswer => {
-          console.log(incorrectAnswer)
-        })
+        document.querySelector(".answers").innerHTML = correct_answer + " " + incorrect_answers
+
       })
+
+
+
+      //Add something to randomize the order of the question
+      //setInterval to limit time user can answer question
 
       // for (let i = 0; i < response.results.length; i++) {
       //   console.log(response.results[i].question)
@@ -60,8 +64,6 @@ const trivia = () => {
 
     .catch(e => console.error(e))
 }
-
-
 
 
 trivia()
